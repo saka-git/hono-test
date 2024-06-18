@@ -1,4 +1,5 @@
 import { Hono } from "hono";
+import { cors } from "hono/cors";
 
 const overViewApp = new Hono().get("/", (c) => {
   return c.json(
@@ -50,9 +51,11 @@ const chartDataApp = new Hono().get("/", (c) => {
 });
 
 const app = new Hono()
+  .use("*", cors())
   .route("/overview", overViewApp)
   .route("/chartdata", chartDataApp);
 
+// CORSミドルウェアを追加する関数
 export type AppType = typeof app;
 export default app;
 
