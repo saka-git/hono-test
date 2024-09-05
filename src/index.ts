@@ -1,5 +1,6 @@
 import { Hono } from "hono";
 import { cors } from "hono/cors";
+import sampleApp from "./sample/test1noUseHono/index";
 
 const overViewApp = new Hono().get("/", (c) => {
   return c.json(
@@ -53,43 +54,9 @@ const chartDataApp = new Hono().get("/", (c) => {
 const app = new Hono()
   .use("*", cors())
   .route("/overview", overViewApp)
-  .route("/chartdata", chartDataApp);
+  .route("/chartdata", chartDataApp)
+  .route("/sample/test", sampleApp);
 
 // CORSミドルウェアを追加する関数
 export type AppType = typeof app;
 export default app;
-
-// import { Hono } from "hono";
-// import { handle } from "hono/vercel";
-// import { zValidator } from "@hono/zod-validator";
-// import { z } from "zod";
-
-// // basePath は API ルートのベースパスを指定します
-// // 以降、新たに生やす API ルートはこのパスを基準に追加されます
-// const app = new Hono().basePath("/api");
-// const route = app.post(
-//   "/rpc",
-//   zValidator(
-//     "form",
-//     z.object({
-//       title: z.string(),
-//       body: z.string(),
-//     })
-//   ),
-//   (c) => {
-//     // ...
-//     return c.json(
-//       {
-//         ok: true,
-//         message: "Success!",
-//         title: "title",
-//         body: "body",
-//       },
-//       201
-//     );
-//   }
-// );
-
-// export type AppType = typeof route;
-
-// export const POST = handle(app);

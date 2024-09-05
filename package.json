@@ -3,14 +3,21 @@
   "version": "1.0.0",
   "scripts": {
     "dev": "wrangler dev src/index.ts",
-    "deploy": "wrangler deploy --minify src/index.ts"
+    "deploy": "wrangler deploy --minify src/index.ts",
+    "test": "vitest",
+    "test:watch": "vitest --watch"
   },
   "dependencies": {
     "@hono/zod-validator": "^0.2.2",
-    "hono": "^4.4.6"
+    "@testing-library/jest-dom": "^6.5.0",
+    "@vitejs/plugin-react": "^4.3.1",
+    "hono": "^4.4.6",
+    "vitest": "^2.0.5"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20240529.0",
+    "@vitest/coverage-v8": "^2.0.5",
+    "jsdom": "^25.0.0",
     "wrangler": "^3.60.2"
   }
 }
