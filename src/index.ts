@@ -51,12 +51,22 @@ const chartDataApp = new Hono().get("/", (c) => {
   );
 });
 
-const app = new Hono()
-  .use("*", cors())
-  .route("/overview", overViewApp)
-  .route("/chartdata", chartDataApp)
-  .route("/sample/test", sampleApp);
+const app = new Hono();
+// .use("*", cors())
+// .route("/overview", overViewApp)
+// .route("/chartdata", chartDataApp)
+// .route("/sample/test", sampleApp);
+
+const route = app.route("/auth", overViewApp);
 
 // CORSミドルウェアを追加する関数
-export type AppType = typeof app;
+export type AppType = typeof route;
 export default app;
+
+export type Add = (x: number, y: number) => number;
+
+const a = {
+  b: 1,
+};
+
+
